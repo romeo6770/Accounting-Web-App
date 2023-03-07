@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./bootstrap-5.2.1-dist/css/bootstrap.css">
+    <title>Accounting - Sr Chamoy</title>
+    <link rel="icon" type="image/x-icon" href="./img/Sr Chamoy Logo.png">
+
+</head>
+<body>
+  <header class="my-2 text-center">
+    <img src="./img/Sr Chamoy Logo.png" alt="Logo Sr Chamoy" class="my-3">
+    <h2>Sr. Chamoy</h2>
+    <p class="lead">Nuestra amistad sabe a Chamoy.</p>
+  </header>
+  <div class="container-fluid formContainer mb-5">
+    <form method="post" id="sheetdb-form"
+      action="">
+      <!-- Agregar link de sheetdb en el apartado de action-->
+      <h4 class="my-3">Vendedor</h4>
+      <label>Vendedor:</label>
+      <select class="form-select" name="data[Vendedor]" required>
+        <option value="">Vendedor...</option>
+        <option value="Romeo">Romeo de la Garza</option>
+        <option value="Diego">Diego Fuentes</option>
+      </select>
+      <h4 class="my-3">Venta</h4>
+      <label for="data[Producto]" class="form-label">Producto</label>
+      <select class="form-select" name="data[Producto]" required>
+        <option value="N/A">Producto...</option>
+        <option value="Panditas">Panditas Con Chamoy</option>
+        <option value="Otro">Otro...</option>
+      </select>
+      <input type="text" placeholder="Otro..." name="data[Otro Producto]" class="form-control my-2">
+      <label class="form-label">Cantidad</label>
+      <select class="form-select" name="data[Cantidad]" required>
+        <option value="N/A">Cantidad...</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="Otro">Otro...</option>
+      </select>
+      <input type="text" class="form-control my-2" placeholder="Otro..." name="data[Otra Cantidad]">
+
+      <div class="my-3">
+        <div class="form-check">
+          <input id="Efectivo" value="Efectivo" name="data[Metodo de Pago]" type="radio" class="form-check-input" checked>
+          <label class="form-check-label" for="Efectivo">Efectivo</label>
+        </div>
+        <div class="form-check">
+          <input id="Transferencia" value="Transferencia" name="data[Metodo de Pago]" type="radio" class="form-check-input">
+          <label class="form-check-label" for="Transferencia">Transferencia</label>
+        </div>
+        <div class="form-check">
+          <input id="Prestamo" value="Prestamo" name="data[Metodo de Pago]" type="radio" class="form-check-input">
+          <label class="form-check-label" for="Prestamo">Prestamo</label>
+        </div>
+      </div>
+      <input type="text" placeholder="Nombre Cliente..." name="data[Nombre Cliente]" class="form-control my-2">
+      <div class="d-flex justify-content-center my-3">
+        <button type="submit" class="w-75 btn btn-dark btn-lg">Registrar Venta</button>
+      </div>
+      <input type="hidden" id="localTime" name="data[Hora]" value="">
+    </form>
+
+  </div>
+  <script>
+    var form = document.getElementById('sheetdb-form');
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      fetch(form.action, {
+          method : "POST",
+          body: new FormData(document.getElementById("sheetdb-form")),
+          currTime
+      }).then(
+          response => response.json()
+      ).then((html) => {
+        // you can put any JS code here
+        window.alert("enviado");
+      });
+    });
+  </script>
+
+  <script type = "text/javascript">
+    //get current time
+    var dt = new Date();
+    cDay = dt.getDay();
+    document.getElementById("localTime").innerHTML = currTime;
+
+    //Switch case in order to reassign string values to the numeric values given by "cDay" argument
+    switch (dt.getDay()) {
+     case 0:
+       cDay = "Domingo";
+       break;
+     case 1:
+       cDay = "Lunes";
+       break;
+     case 2:
+        cDay = "Martes";
+       break;
+     case 3:
+       cDay = "Miércoles";
+       break;
+     case 4:
+       cDay = "Jueves";
+       break;
+     case 5:
+       cDay = "Viernes";
+       break;
+     case 6:
+       cDay = "Sabado";
+    }
+
+    //Log time values to console 
+    console.log("getTime() : " + cDay ); 
+    console.log("getTime() : " + dt.getHours() ); 
+    console.log("getTime() : " + dt.getMinutes() ); 
+
+    var currTime = cDay + " " + dt.getHours() + ":" + dt.getMinutes() + " ";
+    document.getElementById("localTime").value = currTime;
+  </script> 
+
+</body>
+</html> 

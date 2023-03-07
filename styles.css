@@ -1,0 +1,40 @@
+body{
+  margin-left: 15px;
+  margin-right: 15px;
+  background-color: #ffde59 !important;
+}
+
+img{
+  max-width: 150px !important;
+  border-radius: 100%;
+  border-width: 5px;
+  border-color: white;
+  border-style: solid;
+}
+
+.seller{
+  margin-bottom: 25px;
+}
+
+.formContainer{
+  max-width: 500px;
+}
+
+.btn{
+  background-color: white !important;
+  color: #511619 !important;
+  font-weight: 600 !important;
+  border-width: 0px !important;
+}
+
+#Transferencia:checked, #Efectivo:checked, #Prestamo:checked {
+  background-color: #511619 !important;
+}
+
+h1, h2, h3, h4, p, label {
+  color: #511619;
+}
+
+::placeholder, .form-select{
+  color: #511619 !important;
+}
